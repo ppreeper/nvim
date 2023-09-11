@@ -20,6 +20,7 @@ end)
 
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 require('lspconfig').pyright.setup {
+    root_dir = require('lspconfig').util.root_pattern("pyrightconfig.json", "pyproject.toml", "Pipfile"),
     pyright = {
         autoImportCompletion = true,
     },
