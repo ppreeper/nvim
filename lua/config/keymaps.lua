@@ -1,7 +1,6 @@
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>w", ":w<CR>")
 vim.keymap.set("n", "<leader>q", ":q<CR>")
-vim.keymap.set("n", "<leader>qq", ":q!<CR>")
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -37,8 +36,8 @@ vim.keymap.set("n", "<leader>f", function()
     vim.lsp.buf.format()
 end)
 
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+-- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+-- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
@@ -54,6 +53,12 @@ vim.keymap.set("n", "<leader>sn", "]s", {})
 vim.keymap.set("n", "<leader>sp", "[s", {})
 vim.keymap.set("n", "<leader>sa", "zg", {})
 vim.keymap.set("n", "<leader>s?", "z=", {})
+
+-- navigate buffers
+vim.keymap.set("n", "<C-h>", "<C-w>h", {}) -- window left
+vim.keymap.set("n", "<C-l>", "<C-w>l", {}) -- window right
+vim.keymap.set("n", "<C-j>", "<C-w>j", {}) -- window down
+vim.keymap.set("n", "<C-k>", "<C-w>k", {}) -- window up
 
 -- split screen
 vim.keymap.set("n", "<C-J>", "<C-W><C-J>", {})
@@ -103,4 +108,3 @@ vim.keymap.set("n", "<leader>e", ":vsplit :enew<cr>", {}) -- new window below
 -- end
 -- M.setup()
 -- return M
-

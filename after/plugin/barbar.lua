@@ -1,3 +1,11 @@
+require('barbar').setup({
+    clickable = true,
+    tabpages = true,
+    sidebar_filetypes = {
+        NvimTree = true,
+    }
+})
+
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 

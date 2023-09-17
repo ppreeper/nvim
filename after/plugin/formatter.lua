@@ -7,6 +7,13 @@ require("formatter").setup({
         go = {
             function()
                 return {
+                    exe = "goimports",
+                    args = { "-w" },
+                    stdin = false
+                }
+            end,
+            function()
+                return {
                     exe = "gofumpt",
                     args = { "-w" },
                     stdin = false
@@ -26,6 +33,15 @@ require("formatter").setup({
                     exe = "black",
                     args = { "-q", "-" },
                     stdin = true,
+                }
+            end
+        },
+        xml = {
+            function()
+                return {
+                    exe = "xmlformat",
+                    args = { "--overwrite" },
+                    stdin = false,
                 }
             end
         }

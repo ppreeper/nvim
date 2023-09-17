@@ -20,4 +20,4 @@ tree.setup({
 
 
 vim.keymap.set('n', '<C-n>', require('nvim-tree.api').tree.toggle, {})
-
+vim.keymap.set('n', '<C-o>', require('nvim-tree.api').node.open.vertical, {})
