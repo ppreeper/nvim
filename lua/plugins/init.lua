@@ -71,13 +71,15 @@ local plugins = {
     { 'folke/neodev.nvim', },
 
     -- Autocompletion
-    { 'hrsh7th/nvim-cmp' },     -- Required
-    { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+    { 'hrsh7th/nvim-cmp' },     -- the completion plugin
+    { 'hrsh7th/cmp-buffer' },   -- buffer completions
+    { 'hrsh7th/cmp-path' },     -- path completions
+    { 'hrsh7th/cmp-nvim-lsp' }, -- lsp completions
     {
         'L3MON4D3/LuaSnip',
         dependencies = {
             'saadparwaiz1/cmp_luasnip',
-            -- 'rafamadriz/friendly-snippets'
+            'rafamadriz/friendly-snippets'
         }
     }, -- Required
     --     }

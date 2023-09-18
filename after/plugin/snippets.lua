@@ -31,18 +31,31 @@ ls.add_snippets(nil, {
             text({ " : " }),
             insert(0)
 
-        })
+        }),
     },
     lua = {
         ls.parser.parse_snippet("lf", "local $1 = function($2)\n $0\nend"),
         ls.parser.parse_snippet("mf", "$1.$2 = function($3)\n $0\nend"),
+        snip({
+            trig = "ssnip",
+            namr = "snippet",
+            dscr = "snippet template",
+        }, {
+            text({ "snip({" }),
+            text({ "", 'trig = "' }), insert(1, 'trig'), text({ '",' }),
+            text({ "", 'namr = "' }), insert(2, 'name'), text({ '",' }),
+            text({ "", 'dscr = "' }), insert(3, 'description'), text({ '",' }),
+            text({ "", "}, {", "" }),
+            insert(0, '-- snippet code'),
+            text({ "", "})," }),
+        }),
     },
     html = {
         snip({ trig = "hx", }, { text('{{ '), insert(0), text(' }}') }),
         snip({ trig = "hxx", }, { text('{{ .'), insert(0), text(' }}') }),
         snip({ trig = "hif", dscr = "If" }, { text('{{ if }} '), insert(0), text(' {{ end }}') }),
         snip({ trig = "hife", dscr = "If/Else" }, {
-            text({ '{{ if ' }), insert(1), text({ ' }}' }),
+            text({ '{{ if ' }), insert(1), text({ ' }}', '' }),
             insert(2),
             text({ '', '{{ else }}' }),
             insert(3),
@@ -874,35 +887,34 @@ ls.add_snippets(nil, {
             text({ "<odoo>", "" }),
             insert(0),
             text({ "", "</odoo>" })
-            --     "body": ["<odoo>", "\t$0", "<odoo>"],
-
-        })
-        --         {
-        --   "ooxodoo": {
-        --     "prefix": ["ooxodoo"],
-        --     "body": [
-        --       "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
-        --       "<odoo>",
-        --       "\t$0",
-        --       "</odoo>"
-        --     ],
-        --     "description": "add xml odoo namespace"
-        --   },
-        --   "ooodoo": {
-        --     "prefix": ["ooodoo"],
-        --     "body": ["<odoo>", "\t$0", "<odoo>"],
-        --     "description": "add odoo namespace"
-        --   },
-        --   "oodata": {
-        --     "prefix": ["oodata"],
-        --     "body": ["<data noupdate=\"1\">", "$0", "</data>"],
-        --     "description": "data file"
-        --   },
-        --   "oofield": {
-        --     "prefix": ["oofield"],
-        --     "body": ["<field name=\"${1:name}\">$0</field>"],
-        --     "description": "add field tag"
-        --   },
+        }),
+        snip({
+            trig = "ooxodoo",
+            namr = "ooxodoo",
+            dscr = "add xml odoo namespace",
+        }, {
+            text({ '<?xml version="1.0" encoding="utf-8"?>', '<odoo>', '' }),
+            insert(0),
+            text({ '', '</odoo>' }),
+        }),
+        snip({
+            trig = "oodata",
+            namr = "oodata",
+            dscr = "data file",
+        }, {
+            text({ '<data noupdate="' }), insert(1), text({ '">' }),
+            insert(0),
+            text({ '</data>' })
+        }),
+        snip({
+            trig = "oofield",
+            namr = "oofield",
+            dscr = "add field tag",
+        }, {
+            text({ '<field name="' }), insert(1, 'name'), text({ '">' }),
+            insert(0),
+            text({ '</field>' })
+        }),
         --   "oomenuroot": {
         --     "prefix": ["oomenuroot"],
         --     "body": [
@@ -910,6 +922,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "Create New Root Menu in the Upper bar"
         --   },
+
         --   "oomenuitem": {
         --     "prefix": ["oomenuitem"],
         --     "body": [
@@ -917,6 +930,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "Create Menu Heading in Root Menu"
         --   },
+
         --   "oomenuaction": {
         --     "prefix": ["oomenuaction"],
         --     "body": [
@@ -924,11 +938,13 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "Create Menu Actions in Menu Heading"
         --   },
+
         --   "oofinherit": {
         --     "prefix": ["oofinherit"],
         --     "body": ["<field name=\"inherit_id\" ref=\"base_module.view_id\"/>"],
         --     "description": "add inherit field"
         --   },
+
         --   "ooform": {
         --     "prefix": ["ooform"],
         --     "body": [
@@ -948,6 +964,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add form view"
         --   },
+
         --   "oolist": {
         --     "prefix": ["oolist"],
         --     "body": [
@@ -963,6 +980,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add list view"
         --   },
+
         --   "ookanban": {
         --     "prefix": ["ookanban"],
         --     "body": [
@@ -982,6 +1000,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add kanban view"
         --   },
+
         --   "oosearch": {
         --     "prefix": ["oosearch"],
         --     "body": [
@@ -997,6 +1016,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add search view"
         --   },
+
         --   "oocalendar": {
         --     "prefix": ["oocalendar"],
         --     "body": [
@@ -1012,6 +1032,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add calendar view"
         --   },
+
         --   "oocohort": {
         --     "prefix": ["oocohort"],
         --     "body": [
@@ -1027,6 +1048,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add cohort view"
         --   },
+
         --   "oogantt": {
         --     "prefix": ["oogantt"],
         --     "body": [
@@ -1042,6 +1064,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add gantt view"
         --   },
+
         --   "oograph": {
         --     "prefix": ["oograph"],
         --     "body": [
@@ -1058,6 +1081,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add graph view"
         --   },
+
         --   "oopivot": {
         --     "prefix": ["oopivot"],
         --     "body": [
@@ -1075,6 +1099,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add pivot view"
         --   },
+
         --   "ooactivity": {
         --     "prefix": ["ooactivity"],
         --     "body": [
@@ -1094,6 +1119,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add activity view"
         --   },
+
         --   "ooqweb": {
         --     "prefix": ["ooqweb"],
         --     "body": [
@@ -1108,6 +1134,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add qweb view"
         --   },
+
         --   "oobuttonheader": {
         --     "prefix": ["oobuttonheader"],
         --     "body": [
@@ -1115,6 +1142,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add button in form view header"
         --   },
+
         --   "oobuttonbox": {
         --     "prefix": ["oobuttonbox"],
         --     "body": [
@@ -1126,6 +1154,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add stat button container in form view"
         --   },
+
         --   "oobuttonstat": {
         --     "prefix": ["oobuttonstat"],
         --     "body": [
@@ -1135,11 +1164,13 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add button stat"
         --   },
+
         --   "oostatusbar": {
         --     "prefix": ["oostatusbar"],
         --     "body": ["<field name=\"\" widget=\"statusbar\" statusbar_visible=\"\"/>"],
         --     "description": "Create Status bar"
         --   },
+
         --   "oostatusbarheader": {
         --     "prefix": ["oostatusbarheader"],
         --     "body": [
@@ -1149,6 +1180,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "Create Header with Status Bar"
         --   },
+
         --   "oodashboard": {
         --     "prefix": ["oodashboard"],
         --     "body": [
@@ -1161,6 +1193,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "dashboard view"
         --   },
+
         --   "oonotebook": {
         --     "prefix": ["oonotebook"],
         --     "body": [
@@ -1172,6 +1205,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add a notebook"
         --   },
+
         --   "oopage": {
         --     "prefix": ["oopage"],
         --     "body": [
@@ -1181,6 +1215,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add a notebook page"
         --   },
+
         --   "oochatter": {
         --     "prefix": ["oochatter"],
         --     "body": [
@@ -1192,6 +1227,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add chatter"
         --   },
+
         --   "ooaction": {
         --     "prefix": ["ooaction"],
         --     "body": [
@@ -1209,6 +1245,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add an action"
         --   },
+
         --   "ooactionserver": {
         --     "prefix": ["ooactionserver"],
         --     "body": [
@@ -1222,6 +1259,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add server action"
         --   },
+
         --   "ooactionclient": {
         --     "prefix": ["ooactionclient"],
         --     "body": [
@@ -1233,6 +1271,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add client action"
         --   },
+
         --   "ooactionurl": {
         --     "prefix": ["ooactionurl"],
         --     "body": [
@@ -1244,6 +1283,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add url action"
         --   },
+
         --   "ooactionview": {
         --     "prefix": ["ooactionview"],
         --     "body": [
@@ -1256,6 +1296,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add view in action"
         --   },
+
         --   "ooactionreport": {
         --     "prefix": ["ooactionreport"],
         --     "body": [
@@ -1269,6 +1310,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add report action"
         --   },
+
         --   "ooreport": {
         --     "prefix": ["ooreport"],
         --     "body": [
@@ -1286,6 +1328,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add report template"
         --   },
+
         --   "ootemplate": {
         --     "prefix": ["ootemplate"],
         --     "body": [
@@ -1295,6 +1338,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add template"
         --   },
+
         --   "ootemplateinherit": {
         --     "prefix": ["ootemplateinherit"],
         --     "body": [
@@ -1306,6 +1350,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add inherited template"
         --   },
+
         --   "oorecord": {
         --     "prefix": ["oorecord"],
         --     "body": [
@@ -1315,6 +1360,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add record"
         --   },
+
         --   "oofunction": {
         --     "prefix": ["oofunction"],
         --     "body": [
@@ -1323,6 +1369,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add function"
         --   },
+
         --   "ooxpath": {
         --     "prefix": ["ooxpath"],
         --     "body": [
@@ -1332,6 +1379,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add xpath element"
         --   },
+
         --   "ooxpathattr": {
         --     "prefix": ["ooxpathattr"],
         --     "body": [
@@ -1341,11 +1389,13 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add xpath to attributes"
         --   },
+
         --   "ooattribute": {
         --     "prefix": ["ooattribute"],
         --     "body": ["<attribute name=\"${1:attribute}\">$1_value</attribute>"],
         --     "description": "add attribute tag for xpath"
         --   },
+
         --   "ooscript": {
         --     "prefix": ["ooscript"],
         --     "body": [
@@ -1353,6 +1403,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add script tag"
         --   },
+
         --   "oolink": {
         --     "prefix": ["oolink"],
         --     "body": [
@@ -1360,6 +1411,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add link tag"
         --   },
+
         --   "ooassetsbackend": {
         --     "prefix": ["ooassetsbackend"],
         --     "body": [
@@ -1372,6 +1424,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add backend assets"
         --   },
+
         --   "ooassetsfrontend": {
         --     "prefix": ["ooassetsfrontend"],
         --     "body": [
@@ -1384,70 +1437,155 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "add frontend assets"
         --   },
-        --   "t-if": {
-        --     "prefix": ["t-if"],
-        --     "body": ["<t t-if=\"condition\">", "$0", "</t>"],
-        --     "description": "if condition"
-        --   },
-        --   "t-elif": {
-        --     "prefix": ["t-elif"],
-        --     "body": ["</t>", "<t t-elif=\"condition\">", "$0"],
-        --     "description": "elif conditon"
-        --   },
-        --   "t-ifelse": {
-        --     "prefix": ["t-ifelse"],
-        --     "body": ["<t t-if=\"condition\">", "$0", "</t>", "<t t-else=\"\">", "</t>"],
-        --     "description": "if else condition"
-        --   },
-        --   "t-foreach": {
-        --     "prefix": ["t-foreach"],
-        --     "body": [
-        --       "<t t-foreach=\"${1:iteration}\" t-as=\"${2:variable}\">",
-        --       "\t$0",
-        --       "</t>"
-        --     ],
-        --     "description": "foreach loop"
-        --   },
-        --   "t-set": {
-        --     "prefix": ["t-set"],
-        --     "body": ["<t t-set=\"${1:variable}\" t-value=\"${2:value}\"/>"],
-        --     "description": "add variable"
-        --   },
-        --   "t-att": {
-        --     "prefix": ["t-set"],
-        --     "body": ["t-att-${1:attribute_name}=\"$0\""],
-        --     "description": "add attribute"
-        --   },
-        --   "t-attf": {
-        --     "prefix": ["t-attf"],
-        --     "body": ["t-attf-${1:attribute_name}=\"$0\""],
-        --     "description": "add attribute with format value"
-        --   },
-        --   "t-esc": {
-        --     "prefix": ["t-esc"],
-        --     "body": ["<t t-esc=\"${1:expression}\"/>"],
-        --     "description": "evaluate expression"
-        --   },
-        --   "t-raw": {
-        --     "prefix": ["t-raw"],
-        --     "body": ["<t t-raw=\"${1:variable}\"/>"],
-        --     "description": "evaluate html content"
-        --   },
-        --   "t-call": {
-        --     "prefix": ["t-call"],
-        --     "body": ["<t t-call=\"${1:template_name}\"/>"],
-        --     "description": "call other template"
-        --   },
-        --   "t-debug": {
-        --     "prefix": ["t-debug"],
-        --     "body": ["<t t-debug\"${1:pdb}\"/>"],
-        --     "description": "invoke debugger"
-        --   },
-        --   "t-log": {
-        --     "prefix": ["t-log"],
-        --     "body": ["<t t-log=\"${1:expression}\"/>"],
-        --     "description": "log expression result"
-        --   },
+
+        snip({
+            trig = "tif",
+            namr = "t-if",
+            dscr = "if condition"
+        }, {
+            -- snippet code
+            --     "body": ["<t t-if=\"condition\">", "$0", "</t>"],
+            text('<t t-if="'),
+            insert(1, 'condition'),
+            text('">'),
+            insert(0),
+            text('</t>')
+
+        }),
+        snip({
+            trig = "telif",
+            namr = "t-elif",
+            dscr = "elif conditon"
+        }, {
+            -- snippet code
+            --     "body": ["</t>", "<t t-elif=\"condition\">", "$0"],
+            text('<t t-elif="'),
+            insert(1, 'condition'),
+            text('">'),
+            insert(0),
+        }),
+        snip({
+            trig = "tifelse",
+            namr = "t-ifelse",
+            dscr = "if else condition"
+        }, {
+            -- snippet code
+            --     "body": ["<t t-if="condition">", "$0", "</t>", "<t t-else="">", "</t>"],
+            text({ '<t t-if="' }), insert(1, 'condition'), text({ '">' }),
+            text(''),
+            insert(0),
+            text({ '<t t-else="' }), insert(2, 'condition'), text({ '">' }),
+            text({ '', '</t>' })
+        }),
+        snip({
+            trig = "tforeach",
+            namr = "t-foreach",
+            dscr = "foreach loop"
+        }, {
+            -- snippet code
+            --       "<t t-foreach="${1:iteration}" t-as="${2:variable}">",
+            --       "\t$0",
+            text('<t t-foreach="'),
+            insert(1, 'iteration'),
+            text('" t-as="'),
+            insert(2, 'variable'),
+            text({ '">', '' }),
+            insert(0)
+        }),
+        snip({
+            trig = "tset",
+            namr = "t-set",
+            dscr = "add variable"
+        }, {
+            -- snippet code
+            --     "body": ["<t t-set="${1:variable}" t-value="${2:value}"/>"],
+            text('<t t-set="'),
+            insert(1, 'variable'),
+            text('" t-value="'),
+            insert(2, 'value'),
+            text('"/>')
+        }),
+        snip({
+            trig = "tatt",
+            namr = "t-att",
+            dscr = "add attribute"
+        }, {
+            -- snippet code
+            --     "body": ["t-att-${1:attribute_name}=\"$0\""],
+            text('<t t-att-'),
+            insert(1, 'attribute_name'),
+            text('="'),
+            insert(0),
+            text('"/>')
+        }),
+        snip({
+            trig = "tattf",
+            namr = "t-attf",
+            dscr = "add attribute with format value"
+        }, {
+            -- snippet code
+            --     "body": ["t-attf-${1:attribute_name}=\"$0\""],
+            text('<t t-attf-'),
+            insert(1, 'attribute_name'),
+            text('="'),
+            insert(0),
+            text('"/>')
+        }),
+        snip({
+            trig = "tesc",
+            namr = "t-esc",
+            dscr = "evaluate expression"
+        }, {
+            -- snippet code
+            --     "body": ["<t t-esc=\"${1:expression}\"/>"],
+            text('<t t-exc="'),
+            insert(0, 'expression'),
+            text('"/>')
+        }),
+        snip({
+            trig = "traw",
+            namr = "t-raw",
+            dscr = "evaluate html content"
+        }, {
+            -- snippet code
+            --     "body": ["<t t-raw=\"${1:variable}\"/>"],
+            text('<t t-raw="'),
+            insert(0, 'variable'),
+            text('"/>')
+        }),
+
+        snip({
+            trig = "tcall",
+            namr = "t-call",
+            dscr = "call other template"
+        }, {
+            -- snippet code
+            --     "body": ["<t t-call=\"${1:template_name}\"/>"],
+            text('<t t-call="'),
+            insert(0, 'template_name'),
+            text('"/>')
+        }),
+        snip({
+            trig = "tdebug",
+            namr = "t-debug",
+            dscr = "invoke debugger",
+        }, {
+            -- snippet code
+            --     "body": ["<t t-debug\"${1:pdb}\"/>"],
+            text('<t t-debug="'),
+            insert(0, 'pdb'),
+            text('"/>')
+        }),
+        snip({
+            trig = "tlog",
+            namr = "t-log",
+            dscr = "log expression result",
+        }, {
+            -- snippet code
+            text('<t t-log="'),
+            insert(0, 'expression'),
+            text('"/>')
+        }),
         --   "ooxugroup": {
         --     "prefix": ["ooxugroup"],
         --     "body": [
@@ -1459,6 +1597,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "Add odoo user groups"
         --   },
+
         --   "ooxuser": {
         --     "prefix": ["ooxuser"],
         --     "body": [
@@ -1468,6 +1607,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "Add odoo user"
         --   },
+
         --   "ooxapplication": {
         --     "prefix": ["ooxapplication"],
         --     "body": [
@@ -1478,6 +1618,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "Add odoo application"
         --   },
+
         --   "odxparam": {
         --     "prefix": ["odxparam"],
         --     "body": [
@@ -1488,6 +1629,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "Add System Parameter"
         --   },
+
         --   "odxrule": {
         --     "prefix": ["odxrule"],
         --     "body": [
@@ -1500,6 +1642,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "Add Ir Rule Domain Filter"
         --   },
+
         --   "odxsequence": {
         --     "prefix": ["odxsequence"],
         --     "body": [
@@ -1515,6 +1658,7 @@ ls.add_snippets(nil, {
         --     ],
         --     "description": "Add sequence in data xml file"
         --   },
+
         --   "oocron": {
         --     "prefix": ["oocron"],
         --     "body": [

@@ -36,14 +36,5 @@ require("formatter").setup({
                 }
             end
         },
-        xml = {
-            function()
-                return {
-                    exe = "xmlformat",
-                    args = { "--overwrite" },
-                    stdin = false,
-                }
-            end
-        }
     }
 })

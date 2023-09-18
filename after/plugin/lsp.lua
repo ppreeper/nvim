@@ -17,6 +17,7 @@ require('mason-lspconfig').setup({
         "gopls",
         "pyright",
         "eslint",
+        "emmet_ls",
         "tsserver",
         "html",
         "cssls",
@@ -24,7 +25,7 @@ require('mason-lspconfig').setup({
         "yamlls",
         "sqlls",
         "jsonls",
-        "emmet_ls",
+        "lemminx",
     }
 })
 
@@ -57,6 +58,17 @@ lspconfig.lua_ls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
 })
+lspconfig.gopls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    gopls = {
+        completeUnimported = true,
+        usePlaceholders = true,
+        analyses = {
+            unusedparams = true,
+        }
+    }
+})
 lspconfig.pyright.setup {
     on_attach = on_attach,
     capabilities = capabilities,
@@ -72,20 +84,44 @@ lspconfig.pyright.setup {
         }
     }
 }
-lspconfig.gopls.setup({
+lspconfig.eslint.setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    gopls = {
-        completeUnimported = true,
-        usePlaceholders = true,
-        analyses = {
-            unusedparams = true,
-        }
-    }
 })
-
 lspconfig.emmet_ls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
     filetypes = { "html", "css", "scss", "sass", "less", "javascript", "svelte" },
+})
+lspconfig.tsserver.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+lspconfig.html.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+lspconfig.cssls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+lspconfig.tailwindcss.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+lspconfig.yamlls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+lspconfig.sqlls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+lspconfig.jsonls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+lspconfig.lemminx.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
