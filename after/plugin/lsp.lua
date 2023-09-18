@@ -72,7 +72,7 @@ lspconfig.gopls.setup({
 lspconfig.pyright.setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    root_dir = require('lspconfig').util.root_pattern("pyrightconfig.json", "pyproject.toml", "Pipfile"),
+    root_dir = lspconfig.util.root_pattern("pyrightconfig.json", "pyproject.toml", "Pipfile"),
     pyright = {
         autoImportCompletion = true,
     },
@@ -80,7 +80,7 @@ lspconfig.pyright.setup {
         analysis = {
             autoSearchPaths = true,
             diagnosticMode = "workspace",
-            useLibraryCodeForTypes = true
+            useLibraryCodeForTypes = true,
         }
     }
 }
