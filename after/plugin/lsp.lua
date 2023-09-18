@@ -26,6 +26,7 @@ require('mason-lspconfig').setup({
         "sqlls",
         "jsonls",
         "lemminx",
+        "bashls"
     }
 })
 
@@ -122,6 +123,10 @@ lspconfig.jsonls.setup({
     capabilities = capabilities,
 })
 lspconfig.lemminx.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+lspconfig.bashls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
 })
