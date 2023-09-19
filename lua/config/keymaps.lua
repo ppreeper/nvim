@@ -68,6 +68,12 @@ vim.keymap.set("n", "<C-H>", "<C-W><C-H>", {})
 vim.keymap.set("n", "<leader>o", ":split :enew<cr>", {})  -- new window right
 vim.keymap.set("n", "<leader>e", ":vsplit :enew<cr>", {}) -- new window below
 
+-- floaterm settings
+vim.g.floaterm_width = 0.95
+vim.g.floaterm_height = 0.95
+-- lazygit
+vim.keymap.set('n', '<leader>g', ':FloatermNew lazygit<CR>')
+
 -- vim.keymap.set("n", "<leader><leader>", function()
 --     vim.cmd("so")
 -- end)

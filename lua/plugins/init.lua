@@ -49,6 +49,7 @@ local plugins = {
         dependencies = { 'nvim-tree/nvim-web-devicons' },
     },
     { "numToStr/Comment.nvim", },
+    { 'voldikss/vim-floaterm' },
     {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
