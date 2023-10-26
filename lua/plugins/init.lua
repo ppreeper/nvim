@@ -86,7 +86,7 @@ local plugins = {
     --     }
     -- },
     { 'mhartington/formatter.nvim' },
-    { 'nullishamy/autosave.nvim' }
+    -- { 'nullishamy/autosave.nvim' }
 }
 
 local opts = {}
